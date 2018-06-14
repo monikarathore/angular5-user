@@ -1,0 +1,145 @@
+.doc-viewer-container {
+    min-height: 325px;
+    box-sizing: border-box;
+    opacity: 1;
+    color: #39414e;
+    background-color: white;
+    border: 1px solid rgb(198, 198, 198);
+    border-radius: 5px 5px 5px 5px;
+    font-family: 'Roboto';
+    font-size: 13px;
+    text-align: left;
+    margin-left: 20px;
+    width: 350px;
+    position: relative;
+    box-shadow: 0px 0px 17px grey;
+}
+
+.doc-viewer-container .clearfix {
+    overflow: auto;
+}
+
+.doc-viewer-container .clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.doc-viewer-container .doc-header {
+    border-bottom: 1px solid #abb6c3;
+    padding: 10px 10px;
+    display: flex;
+    align-items: center;
+}
+
+.doc-viewer-container .doc-header .doc-viewer-icon {
+    background: #f3f3f3;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    line-height: normal;
+    padding: 5px;
+    border-radius: 100%;
+    font-size: 20px;
+}
+
+.doc-viewer-container .doc-header .doc-title {
+    padding: 0 10px;
+    width: calc(100% - 70px);
+    font-weight: 500;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.doc-viewer-container .doc-header .doc-title span.file-name {
+    margin: 0;
+    max-width: 86%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
+}
+
+.doc-viewer-container .doc-header .doc-title span.extention-file {
+    display: inline-block;
+    overflow: hidden;
+}
+
+.doc-viewer-container .doc-header .close-icon {
+    width: 25px;
+    height: 25px;
+    padding: 0px 5px;
+    color: #abb6c3;
+    font-size: 25px;
+    text-align: right;
+    line-height: 0.9em;
+    cursor: pointer;
+}
+
+.doc-viewer-container .doc-information {
+    border-bottom: 1px solid #abb6c3;
+    padding: 10px 10px;
+}
+
+.doc-viewer-container .doc-info-heading {
+    padding: 3px 0;
+}
+
+.doc-viewer-container .doc-info-heading h5 {
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.doc-viewer-container .doc-information table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.doc-viewer-container .doc-information table tr {
+    border: none;
+}
+
+.doc-viewer-container .doc-information table tr th {
+    padding: 4px;
+    border: none;
+}
+
+.doc-viewer-container .doc-information table tr td {
+    padding: 4px;
+    border: none;
+}
+
+.doc-viewer-container .spacing-left-right {
+    padding: 10px;
+}
+
+.doc-viewer-container .result-page {
+    max-height: calc(100vh - 224px);
+    overflow: auto;
+}
+
+.doc-viewer-container .result-page .result-thumbnail ul {
+    margin: 0;
+    padding: 0;
+}
+
+.doc-viewer-container .result-page .result-thumbnail ul li {
+    margin: 5px;
+    padding: 5px;
+    display: inline-block;
+    width: calc(50% - 22px);
+}
+
+.doc-viewer-container .result-page .result-thumbnail ul li .thumbholder {
+    height: 188px;
+    border: 1px solid #abb6c3;
+}
+
+.doc-viewer-container .result-page .result-thumbnail ul li .page-number {
+    color: #000;
+    font-size: 16px;
+    text-align: center;
+    padding: 2px 0;
+}

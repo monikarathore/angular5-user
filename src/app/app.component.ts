@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Localstorage } from './annotations/localstorage.annotation';
 
 @Component({
   selector: 'app-root',
@@ -7,5 +6,13 @@ import { Localstorage } from './annotations/localstorage.annotation';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  @Localstorage title = 'app';
+  title = 'app';
+  showDocViewer = false;
+  closeIcon = true;
+  public closeDocView() {
+    this.showDocViewer = false;
+  }
+  public toggleDocViewer() {
+      this.showDocViewer = true;
+  }
 }

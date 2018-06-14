@@ -1,13 +1,18 @@
 {
   "extends": "../tsconfig.json",
+  "angularCompilerOptions": {
+    "paths": {
+      "@slb-dtw-packages/document-wke-widget": ["./lib/src/public_api.ts"]
+    }
+  },
   "compilerOptions": {
     "outDir": "../out-tsc/app",
-    "baseUrl": "./",
     "module": "es2015",
-    "types": []
+    "baseUrl": "",
+    "types": [],
+    "paths": {
+      "@slb-dtw-packages/document-wke-widget": ["./lib/src/public_api.ts"]
+    }
   },
-  "exclude": [
-    "test.ts",
-    "**/*.spec.ts"
-  ]
+  "exclude": ["test.ts", "**/*.spec.ts"]
 }

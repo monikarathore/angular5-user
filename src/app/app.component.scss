@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900');
+.doc-viewer-holder {
+    position: absolute;
+    right: 20%;
+}
+
+.input-form {
+    width: 350px;
+    float: left;
+}
+
+.input-form label {
+    font-size: 18px;
+}
+
+.input-form input[type=text] {
+    background-color: #fff;
+    border: 1px solid #c7d0d8;
+    border-radius: 3px;
+    position: relative;
+    padding: 11px 15px;
+    min-width: 280px;
+    width: 100%;
+}
+
+.input-form button {
+    padding: 12px 15px;
+    background-color: #1683fb;
+    border-radius: 3px;
+    color: #fff;
+    cursor: pointer;
+    min-width: 180px;
+    font-weight: 700;
+    border: none;
+}
+
+.formT {
+    padding: 10px;
+}
