@@ -1,27 +1,89 @@
-# Angular5
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
+#  Introduction
 
-## Development server
+  
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Search listing widget is able to display the pages (images) of document with page navigation to navigate previous page, next page and any of the pages of the document.
 
-## Code scaffolding
+  
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Prerequisites: - Search listing widget is written in Angular4 CLI. It has the following dependencies
 
-## Build
+* Node 6.10.0 or higher
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+* NPM 3 or higher
 
-## Running unit tests
+  
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+User permissions:- User should have permission to view the dataset. Example - To view documents of kind oga:wellFileRecord user should be part of oga.viewers group in datalake. To obtain the same, please contact Lal Verma (LVerma@slb.com).
 
-## Running end-to-end tests
+  
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+### Features:-
 
-## Further help
+Load more - (Default) Search listing widget has a 'Load more' features which fetches the next set of documents based on your input *limit*.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+# Getting Started
+##  Installation process
+ To consume the Document search listing widget in your Angular project, run the below npm command 
+
+  ```bash
+  npm install @slb-dtw-packages/wke-document-view --save
+  ```
+
+## Input & Output
+
+### Input -
+
+- keyword <string> (Required) - search keyword.
+
+- sToken <string> (Required) - Takes S-Auth token of user. For more information related to S-Auth token:- https://wiki.slb.com/pages/viewpage.action?pageId=56375807
+
+- limit <string> (*Optional*) - Number of results per page. Default value is *25*.
+
+- mode <string> (horizontal | vertical | wrap - *Optional*) - Changes display mode of the widget to horizonal, vertical or wrap. Default value *horizontal*
+
+- enableSelection <boolean> (*Optional*) - Enable selection of documents on click & double click. Default value *false*.
+
+### Output events-
+
+- *documentClick* - document object selected on single click
+
+- *documentDoubleClick* - document object selected on double click
+  
+## How to consume
+
+- Import SearchListingModule to any module. For example:
+
+  
+
+   ```javascript
+    ...
+    import { HttpClientModule } from '@angular/common/http';
+    import { SearchListingModule} from '@slb-dtw-packages/wke-document-view';
+    ...
+    @NgModule({
+    ...
+    imports: [
+  	BrowserModule,
+	  NoopAnimationsModule,
+    HttpClientModule,
+    SearchListingModule.forRoot()
+    ],
+    ...
+    })
+    export class AppModule { }
+```
+-  Add DLS tooltip css to your global css
+
+```scss
+  @import '~@slb-vanilla/vanilla-package/tooltip/tooltip-mode-light-compiled.css';
+```
+-  Add html template selector in any html page. For example:
+
+
+```html
+ <app-search-listing [sToken]='sToken' [keyword]='keyword' [limit]='limit'
+    (documentClick)="onDocumentClick($event)"
+     (documentDoubleClick)="onDocumentDoubleClick($event)"></app-search-listing>
+```

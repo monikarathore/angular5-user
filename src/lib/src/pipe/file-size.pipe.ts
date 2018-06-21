@@ -1,10 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
-
 @Pipe({
   name: 'fileSize'
 })
 export class FileSizePipe implements PipeTransform {
-
   private units = [
     'bytes',
     'KB',
@@ -13,7 +11,7 @@ export class FileSizePipe implements PipeTransform {
     'TB',
     'PB'
   ];
-  transform(bytes: number = 0, precision: number = 2 ): string {
+  transform(bytes: number = 0, precision: number = 2 ): string | number {
     if (!isFinite( bytes ) ) {
       return '?';
     }

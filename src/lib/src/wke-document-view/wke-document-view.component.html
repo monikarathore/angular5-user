@@ -1,0 +1,57 @@
+<section class="doc-viewer-container clearfix">
+    <div class="loading-holder">
+        <slb-loading-spinner id="loadingSpinner"  *ngIf="isLoading"  class="wke-summary-spinner"></slb-loading-spinner>
+    </div>
+    <ng-container *ngIf="!isLoading">
+        <div class="doc-header clearfix">
+            <div class="doc-viewer-icon">$</div>
+            <div class="doc-title">
+                <span class="file-name" [innerHTML]="wkeDocumentData.fileName">sample.pdf</span>
+                <!-- <span class="extention-file">.pdf</span> -->
+            </div>
+            <div class="close-icon" (click)="toggleExpandedState()" *ngIf="closeIconVisibility">X</div>
+        </div>
+        <div class="doc-information clearfix">
+            <div class="doc-info-heading clearfix">
+                <h5>Information</h5>
+            </div>
+            <!-- {{ wkeDocumentData | json }} -->
+            <table class="clearfix">
+                <tbody>
+                    <tr>
+                        <th>Author :</th>
+                        <td align="right" [innerHTML]="wkeDocumentData.createdBy | titlecase"></td>
+                    </tr>
+                    <!-- <tr>
+                        <th>Date :</th>
+                        <td align="right">{{ '2015-06-15 09:03 AM GMT+9' | date:'dd/MM/yyyy' }}</td>
+                    </tr> -->
+                    <tr>
+                        <th>Size :</th>
+                        <td align="right"> <span [innerHTML]="wkeDocumentData.fileSize | fileSize : number : '1.2-2'">32 MB</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <slb-loading-spinner id="loadingThumb"  *ngIf="isLoading"  class="wke-summary-spinner"></slb-loading-spinner>
+
+            <div class="doc-info-heading clearfix spacing-left-right">
+                <h5>Search result pages</h5>
+            </div>
+            <div class="clearfix result-page" infinite-scroll [infiniteScrollDistance]="1" [infiniteScrollThrottle]="1" [scrollWindow]="false" (scrolled)="scrollDown()" [ngClass]="{'thumbnails-container-height': allDataWithWellbore, 'thumbnails-container-height-no-wellbore': allDataWithNoWellbore, 'thumbnails-container-height-no-data': NoDataWithWellbore, 'thumbnails-container-height-no-data-no-wellbore': NoDataWithNOWellbore, 'no-scroll-bar': isThumbnailsLoading }">
+                <div class="clearfix result-thumbnail" #panel>
+                    <ul>
+                        <li *ngFor="let thumb of documentThumbnails">
+                            <div class="thumbholder">
+                                <img src="{{thumb.thumbnailUrl}}" alt="" title="">
+                            </div>
+                            <div class="page-number clearfix" [innerHTML]="thumb.pageNumber">1</div>
+                        </li>
+                    </ul>
+                    <div *ngIf="isLoadingThumb" class="liloading clearfix">
+                        <slb-loading-spinner id="loadingSpinner"  *ngIf="isLoadingThumb"  class="wke-summary-spinner"></slb-loading-spinner>
+                    </div>
+                </div>
+            </div>
+    </ng-container>
+</section>

@@ -1,36 +1,31 @@
 <div class="input-form">
-    <!-- <div class="formT">
-        <label>Document Id</label>
-        <input type="text">
+    <div class="wrapper">
+        <div class="main-content">
+            <div class="input-form">
+                <label>Document Id</label>
+                <input type="text" [(ngModel)]="documentId" placeholder="Enter well Id" />
+            </div>
+            <div class="input-group">
+                <div class="label-col"> Keyword :</div>
+                <input type="text" [(ngModel)]="query" placeholder="Enter keyword" />
+            </div>
+            <div class="input-form">
+                <label> sToken</label>
+                <input type="text" [(ngModel)]="sToken" placeholder="Enter sToken" />
+            </div>
+            <div class="input-form">
+                <label> Client Id</label>
+                <input type="text" [(ngModel)]="clientId" placeholder="Enter client Id" />
+            </div>
+        </div>
     </div>
-    <div class="formT">
-        <label>Stoken</label>
-        <input type="text">
-    </div>
-    <div class="formT">
-        <label>client Id</label>
-        <input type="text">
-    </div>
-    <div class="formT">
-        <label>Keyword</label>
-        <input type="text">
-    </div>
-    <div class="formT">
-        <label>Enable zoom
-                <input type="checkbox">
-            </label>
-    </div>
-    <div class="formT">
-        <label>Enable movement
-                <input type="checkbox">
-            </label>
-    </div> -->
-    <div class="formT">
+    <div class="input-form formT">
         <button (click)="toggleDocViewer()">Show</button>
     </div>
 </div>
 <div class="doc-viewer-holder">
-    <div *ngIf="showDocViewer">
-        <app-document-viewer [closeIcon]="closeIcon" (close)="closeDocView()"></app-document-viewer>
+    <div *ngIf="showDocViewer && documentId">
+        <wke-document-view [documentViewerServiceURL]='url' [sToken]='sToken' [documentId]='documentId' [clientId]='clientId' [query]='query' [closeIconVisibility]="closeIconVisibility" (close)="closeDocView()">
+        </wke-document-view>
     </div>
 </div>

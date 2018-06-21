@@ -1,6 +1,6 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
-import { DocumentPreviewModule } from '../document-preview/document-preview.module';
+import { WkeDocumentModule } from '../lib/src/wke-document.module';
 import { Component } from '@angular/core';
 
 describe('AppComponent', () => {
@@ -9,7 +9,7 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent
       ],
-      imports: [DocumentPreviewModule]
+      imports: [WkeDocumentModule]
     }).compileComponents();
   }));
   it('should create the app', async(() => {
@@ -17,15 +17,16 @@ describe('AppComponent', () => {
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   }));
-  it(`should call closeDocView`, async(() => {
+  
+  it(`should have as title 'app'`, async(() => {
     const fixture = TestBed.createComponent(AppComponent);
-    fixture.componentInstance.closeDocView();
-    expect(fixture.componentInstance.showDocViewer).toBe(false);
+    const app = fixture.debugElement.componentInstance;
+    expect(app.title).toEqual('app');
   }));
-  it(`should call toggleDocViewer`, async(() => {
+  it('should render title in a h1 tag', async(() => {
     const fixture = TestBed.createComponent(AppComponent);
-    fixture.componentInstance.toggleDocViewer();
-    expect(fixture.componentInstance.showDocViewer).toBe(true);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('h1').textContent).toContain('Welcome to document-preview-pane-ui-lib!');
   }));
-
 });

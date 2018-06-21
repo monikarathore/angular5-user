@@ -1,24 +1,23 @@
 {
     "extends": "../tsconfig.json",
     "angularCompilerOptions": {
-      "paths": {
-        "@slb-dtw-packages/document-wke-widget": ["../dist/lib"]
-      },
-      "annotateForClosureCompiler": true,
-      "skipTemplateCodegen": true,
-      "strictMetadataEmit": true,
-      "fullTemplateTypeCheck": true,
-      "strictInjectionParameters": true
+        "paths": {
+            "@slb-dtw-packages/wke-document-view": ["../dist/lib"]
+        },
+        "annotateForClosureCompiler": true,
+        "skipTemplateCodegen": true,
+        "strictMetadataEmit": true,
+        "fullTemplateTypeCheck": true,
+        "strictInjectionParameters": true
     },
     "compilerOptions": {
-      "outDir": "../out-tsc/app",
-      "module": "es2015",
-      "baseUrl": "",
-      "types": [],
-      "paths": {
-        "@slb-dtw-packages/document-wke-widget": ["../dist/lib"]
-      }
+        "outDir": "../out-tsc/app",
+        "module": "es2015",
+        "baseUrl": "",
+        "types": [],
+        "paths": {
+            "@slb-dtw-packages/wke-document-view": ["../dist/lib"]
+        }
     },
     "exclude": ["test.ts", "**/*.spec.ts"]
-  }
-  
+}
