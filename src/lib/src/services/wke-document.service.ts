@@ -19,28 +19,31 @@ export class DocumentViewerService {
 
 
   public callDocumentThumbViewerService(sToken: string, clientId: string,
-    documentId: string, page: string, offset, limit, query, documentViewerServiceURL: string) {
+    documentId: string, query: string, documentViewerServiceURL: string) {
     const options = this.getHttpHeaders(sToken, clientId);
-    const url = this.getDocumentThumbViewerServiceURL(documentId, page, offset, limit, query, documentViewerServiceURL);
+    const url = this.getDocumentThumbViewerServiceURL(documentId, query, documentViewerServiceURL);
+    console.log(url);
     return this.httpGet(url, options);
   }
 
-  public getDocumentThumbViewerServiceURL(documentId: string, page: string, limit, offset, query, documentViewerServiceURL: string, ) {
+  public getDocumentThumbViewerServiceURL(documentId: string, query: string, documentViewerServiceURL: string, ) {
+    debugger;
     this.documentViewerServiceURL = documentViewerServiceURL ? documentViewerServiceURL : AppSettings.DOCUMENT_VIEWER_SERVICE_URL;
     if (query) {
-      return this.documentViewerServiceURL + '/' + documentId + '/' + page + '?limit=' + limit + '&offset=' + offset + '&query=' + query;
+      return this.documentViewerServiceURL + '/' + documentId + Constants.PAGE_LIMIT_OFFSET + '&query=' + query;
     } else {
-      return this.documentViewerServiceURL + '/' + documentId + '/' + page + '?limit=' + limit + '&offset=' + offset;
+      return this.documentViewerServiceURL + '/' + documentId + Constants.PAGE_LIMIT_OFFSET;
     }
   }
 
   public callDocumentViewerServiceForTotalPages(sToken: string, clientId: string, documentId: string, documentViewerServiceURL: string) {
     const options = this.getHttpHeaders(sToken, clientId);
     const url = this.getDocumentViewerServiceURLForTotalPages(documentId, documentViewerServiceURL);
+    console.log(url);
     return this.httpGet(url, options);
   }
   public getDocumentViewerServiceURLForTotalPages(documentId: string, documentViewerServiceURL: string) {
-    this.documentViewerServiceURL = documentViewerServiceURL ? documentViewerServiceURL : AppSettings.DOCUMENT_VIEWER_SERVICE_URL
+    this.documentViewerServiceURL = documentViewerServiceURL ? documentViewerServiceURL : AppSettings.DOCUMENT_VIEWER_SERVICE_URL;
     return this.documentViewerServiceURL + '/' + documentId;
   }
 

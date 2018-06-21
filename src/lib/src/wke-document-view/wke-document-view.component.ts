@@ -14,10 +14,8 @@ export class WkeDocumentViewComponent implements OnInit, OnChanges {
     wkeDocumentData: any;
     isLoading = true;
     isLoadingThumb = true;
-    pageUrl = 'page';
     pagelimit = 6;
     offset = 0;
-    public url;
     documentThumbnails: any;
     @Input() public closeIconVisibility: boolean;
     @Output() public close: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -62,7 +60,7 @@ export class WkeDocumentViewComponent implements OnInit, OnChanges {
     }
     public getDocumentTumb(limitPage, pageoffset) {
         this.documentViewerService.callDocumentThumbViewerService(this.sToken, this.clientId, this.documentId,
-            this.pageUrl, this.pagelimit, this.offset, this.query, this.documentViewerServiceURL).subscribe((thumbResponse) => {
+            this.query, this.documentViewerServiceURL).subscribe((thumbResponse) => {
                 this.documentThumbnails = thumbResponse.records;
                 this.isLoading = false;
                 this.isLoadingThumb = false;

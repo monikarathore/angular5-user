@@ -18,5 +18,8 @@ describe('WkeDocumentViewComponent', () => {
       .compileComponents();
 
   }));
+  it('should create an instance', () => {
+    expect(DocumentViewerService).toBeTruthy();
+  });
 
 });
