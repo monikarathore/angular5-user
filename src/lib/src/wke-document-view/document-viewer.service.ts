@@ -18,32 +18,29 @@ export class DocumentViewerService {
   }
 
 
-  public callDocumentThumbViewerService(sToken: string, clientId: string,
-    documentId: string, query: string, documentViewerServiceURL: string) {
+  public getDocumentThumbViewerService(sToken: string, clientId: string,
+    documentId: string, page: string, limit: number, offset, query, documentViewerServiceURL: string): Observable<any> {
     const options = this.getHttpHeaders(sToken, clientId);
-    const url = this.getDocumentThumbViewerServiceURL(documentId, query, documentViewerServiceURL);
-    console.log(url);
+    const url = this.getDocumentThumbViewerServiceURL(documentId, page, limit, offset, query, documentViewerServiceURL);
     return this.httpGet(url, options);
   }
 
-  public getDocumentThumbViewerServiceURL(documentId: string, query: string, documentViewerServiceURL: string, ) {
-    debugger;
+  public getDocumentThumbViewerServiceURL(documentId: string, page: string, limit, offset, query, documentViewerServiceURL: string, ) {
     this.documentViewerServiceURL = documentViewerServiceURL ? documentViewerServiceURL : AppSettings.DOCUMENT_VIEWER_SERVICE_URL;
     if (query) {
-      return this.documentViewerServiceURL + '/' + documentId + Constants.PAGE_LIMIT_OFFSET + '&query=' + query;
+      return this.documentViewerServiceURL + '/' + documentId + '/' + page + '?limit=' + limit + '&offset=' + offset + '&query=' + query;
     } else {
-      return this.documentViewerServiceURL + '/' + documentId + Constants.PAGE_LIMIT_OFFSET;
+      return this.documentViewerServiceURL + '/' + documentId + '/' + page + '?limit=' + limit + '&offset=' + offset;
     }
   }
 
-  public callDocumentViewerServiceForTotalPages(sToken: string, clientId: string, documentId: string, documentViewerServiceURL: string) {
+  public getDocumentViewerServiceForTotalPages(sToken: string, clientId: string, documentId: string, documentViewerServiceURL: string) {
     const options = this.getHttpHeaders(sToken, clientId);
     const url = this.getDocumentViewerServiceURLForTotalPages(documentId, documentViewerServiceURL);
-    console.log(url);
     return this.httpGet(url, options);
   }
   public getDocumentViewerServiceURLForTotalPages(documentId: string, documentViewerServiceURL: string) {
-    this.documentViewerServiceURL = documentViewerServiceURL ? documentViewerServiceURL : AppSettings.DOCUMENT_VIEWER_SERVICE_URL;
+    this.documentViewerServiceURL = documentViewerServiceURL ? documentViewerServiceURL : AppSettings.DOCUMENT_VIEWER_SERVICE_URL
     return this.documentViewerServiceURL + '/' + documentId;
   }
 

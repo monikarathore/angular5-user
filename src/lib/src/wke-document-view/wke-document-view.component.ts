@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import { DocumentViewerService } from '../services/wke-document.service';
+import { DocumentViewerService } from './document-viewer.service';
 @Component({
     selector: 'wke-document-view',
     templateUrl: './wke-document-view.component.html',
@@ -14,8 +14,10 @@ export class WkeDocumentViewComponent implements OnInit, OnChanges {
     wkeDocumentData: any;
     isLoading = true;
     isLoadingThumb = true;
+    pageUrl = 'page';
     pagelimit = 6;
     offset = 0;
+    public url;
     documentThumbnails: any;
     @Input() public closeIconVisibility: boolean;
     @Output() public close: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -24,10 +26,10 @@ export class WkeDocumentViewComponent implements OnInit, OnChanges {
     @Input() public documentViewerServiceURL: string;
     @Input() public sToken: string;
     @Input() public clientId: string;
+    @ViewChild('panel', { read: ElementRef }) public panel: ElementRef;
     constructor(public documentViewerService: DocumentViewerService, private renderer: Renderer2) { }
 
     public ngOnInit() {
-        
     }
 
     public toggleExpandedState() {
@@ -37,7 +39,6 @@ export class WkeDocumentViewComponent implements OnInit, OnChanges {
         this.isLoadingThumb = true;
       if (this.pagelimit >= 6) {
             this.pagelimit += 6;
-            //this.panel.nativeElement.scrollTop = this.offset += 6;
             this.getDocumentTumb(this.pagelimit, this.offset);
         }
 
@@ -52,15 +53,15 @@ export class WkeDocumentViewComponent implements OnInit, OnChanges {
         }
     }
     public getDocumentData() {
-        this.documentViewerService.callDocumentViewerServiceForTotalPages(this.sToken, this.clientId, this.documentId,
+        this.documentViewerService.getDocumentViewerServiceForTotalPages(this.sToken, this.clientId, this.documentId,
             this.documentViewerServiceURL).subscribe((document) => {
                 this.wkeDocumentData = document;
                 this.getDocumentTumb(this.pagelimit, this.offset);
             });
     }
     public getDocumentTumb(limitPage, pageoffset) {
-        this.documentViewerService.callDocumentThumbViewerService(this.sToken, this.clientId, this.documentId,
-            this.query, this.documentViewerServiceURL).subscribe((thumbResponse) => {
+        this.documentViewerService.getDocumentThumbViewerService(this.sToken, this.clientId, this.documentId,
+            this.pageUrl, this.pagelimit, this.offset, this.query, this.documentViewerServiceURL).subscribe((thumbResponse) => {
                 this.documentThumbnails = thumbResponse.records;
                 this.isLoading = false;
                 this.isLoadingThumb = false;
