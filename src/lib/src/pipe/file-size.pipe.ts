@@ -11,14 +11,11 @@ export class FileSizePipe implements PipeTransform {
     'TB',
     'PB'
   ];
-  transform(bytes: number = 0, precision: number = 2 ): string | number {
-    if (!isFinite( bytes ) ) {
-      return '?';
-    }
-    let unit = 0;
-    while ( bytes >= 1024 ) {
-      bytes /= 1024; unit ++;
-    }
-    return bytes.toFixed( + precision ) + ' ' + this.units[ unit ];
+  transform(bytes: any = 0, precision: any = 2): string | number {
+    if (isNaN(parseFloat(bytes)) || !isFinite(bytes)) { return '-' };
+    // if (typeof precision === 'undefined') { precision = 1 };
+    const units = ['bytes', 'kB', 'MB', 'GB', 'TB', 'PB'],
+      number = Math.floor(Math.log(bytes) / Math.log(1024));
+    return (bytes / Math.pow(1024, Math.floor(number))).toFixed(precision) + ' ' + units[number];
   }
 }

@@ -25,7 +25,7 @@ export class DocumentViewerService {
     return this.httpGet(url, options);
   }
 
-  public getDocumentThumbViewerServiceURL(documentId: string, page: string, limit, offset, query, documentViewerServiceURL: string, ) {
+  public getDocumentThumbViewerServiceURL(documentId: string, page: string, limit, offset, query, documentViewerServiceURL: string) {
     this.documentViewerServiceURL = documentViewerServiceURL ? documentViewerServiceURL : AppSettings.DOCUMENT_VIEWER_SERVICE_URL;
     if (query) {
       return this.documentViewerServiceURL + '/' + documentId + '/' + page + '?limit=' + limit + '&offset=' + offset + '&query=' + query;
@@ -62,7 +62,7 @@ export class DocumentViewerService {
     return this._http
       .get<any>(url, options)
       .catch(error => {
-        if (error.status === 401 || error.status === 403) {
+        if (error.status === 401 || error.status === 403 || error.status === 404) {
           return Observable.throw('no permission');
         }
         return Observable.throw('Server Error');

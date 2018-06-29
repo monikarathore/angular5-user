@@ -17,6 +17,11 @@
                 <label> Client Id</label>
                 <input type="text" [(ngModel)]="clientId" placeholder="Enter client Id" />
             </div>
+            <div class="clearfix input-form">
+                <label>
+                    <input type='checkbox' [(ngModel)]='closeIconVisibility'>Close Icon Visibility <span> = {{closeIconVisibility}}</span>
+                </label>
+            </div>
         </div>
     </div>
     <div class="input-form formT">
