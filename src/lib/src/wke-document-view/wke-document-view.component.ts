@@ -17,9 +17,10 @@ export class WkeDocumentViewComponent implements OnInit, OnChanges {
   isLoading = true;
   isLoadingThumb = true;
   errorMsg: boolean;
-  pagelimit = 6;
+  pagelimit: number;
   offset = 0;
   public url;
+  orignalArrayThumbnail: any;
   documentThumbnails: any;
   private lastSelected: Result;
   totalCount: any;
@@ -53,13 +54,23 @@ export class WkeDocumentViewComponent implements OnInit, OnChanges {
     this.documentClick.emit(thumb);
   }
   public scrollDown() {
+    this.pagelimit = 6;
     this.isLoadingThumb = true;
-    if (this.pagelimit <= this.totalCount) {
-      this.pagelimit += 6;
-      this.getDocumentTumb(this.pagelimit, this.offset);
-    } else {
-      this.isLoadingThumb = false;
+    if (this.orignalArrayThumbnail.length >= this.documentThumbnails.length) {
+      
+      let len = this.documentThumbnails.length;
+      for (let i = len; i <= len; i++) {
+        this.documentThumbnails.push(this.orignalArrayThumbnail[i]);
+        this.isLoadingThumb = false;
+      }
     }
+    // this.isLoadingThumb = true;
+    // if (this.pagelimit <= this.totalCount) {
+    //   this.pagelimit += 6;
+    //   this.getDocumentTumb();
+    // } else {
+    //   this.isLoadingThumb = false;
+    // }
   }
   public ngOnChanges(changes: SimpleChanges) {
     for (const propName in changes) {
@@ -75,17 +86,19 @@ export class WkeDocumentViewComponent implements OnInit, OnChanges {
       this.documentViewerServiceURL).subscribe((document) => {
         this.errorMsg = false;
         this.wkeDocumentData = document;
-        this.getDocumentTumb(this.pagelimit, this.offset);
+        this.pagelimit = document.totalPages;
+        this.getDocumentTumb(this.pagelimit);
       }, error => {
         this.isLoading = false;
         this.errorMsg = true;
 
       });
   }
-  public getDocumentTumb(limitPage, pageoffset) {
+  public getDocumentTumb(limit) {
     this.documentViewerService.getDocumentThumbViewerService(this.sToken, this.clientId, this.documentId,
       Constants.PAGE, this.pagelimit, this.offset, this.query, this.documentViewerServiceURL).subscribe((thumbResponse) => {
-        this.documentThumbnails = thumbResponse.records;
+        this.orignalArrayThumbnail = thumbResponse.records;
+        this.documentThumbnails = thumbResponse.records.slice(0, 6);
         this.totalCount = thumbResponse.totalCount;
         this.isLoading = false;
         this.isLoadingThumb = false;
