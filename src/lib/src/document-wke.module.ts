@@ -4,12 +4,14 @@ import { WkeDocumentViewComponent } from './wke-document-view/wke-document-view.
 import { FileSizePipe } from './pipe/file-size.pipe';
 import { LoadingSpinnerModule } from '@slb-angular/dls-components';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { OrderModule } from 'ngx-order-pipe';
 
 @NgModule({
   imports: [
     CommonModule,
     LoadingSpinnerModule,
-    InfiniteScrollModule
+    InfiniteScrollModule,
+    OrderModule
   ],
   declarations: [WkeDocumentViewComponent, FileSizePipe],
   exports: [WkeDocumentViewComponent],

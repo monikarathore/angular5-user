@@ -9,11 +9,12 @@ import { LoadingSpinnerModule } from '@slb-angular/dls-components';
 import { WkeDocumentViewComponent } from '../src/wke-document-view/wke-document-view.component';
 import { FileSizePipe } from '../src/pipe/file-size.pipe';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { OrderModule } from 'ngx-order-pipe';
 describe('WkeDocumentViewComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [WkeDocumentViewComponent, FileSizePipe],
-      imports: [InfiniteScrollModule, LoadingSpinnerModule]
+      imports: [InfiniteScrollModule, OrderModule, LoadingSpinnerModule]
     })
       .compileComponents();
 

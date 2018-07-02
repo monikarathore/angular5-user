@@ -2,6 +2,7 @@ import { FileSizePipe } from '../src/pipe/file-size.pipe';
 import { WkeDocumentViewComponent } from '../src/wke-document-view/wke-document-view.component';
 import { LoadingSpinnerModule } from '@slb-angular/dls-components';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { OrderModule } from 'ngx-order-pipe';
 import { Result } from '../src/result.model';
 import { inject, TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { Component, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, SimpleChange } from '@angular/core';
@@ -17,7 +18,7 @@ describe('WkeDocumentViewComponent', () => {
     mockDocumentViewerService = new MockDocumentViewerService();
     TestBed.configureTestingModule({
       declarations: [WkeDocumentViewComponent, FileSizePipe],
-      imports: [LoadingSpinnerModule, InfiniteScrollModule],
+      imports: [LoadingSpinnerModule, InfiniteScrollModule, OrderModule],
       providers: [
         {
           provide: DocumentViewerService,

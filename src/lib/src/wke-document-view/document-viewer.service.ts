@@ -21,7 +21,7 @@ export class DocumentViewerService {
   public getDocumentThumbViewerService(sToken: string, clientId: string,
     documentId: string, page: string, limit: number, offset, query, documentViewerServiceURL: string): Observable<any> {
     const options = this.getHttpHeaders(sToken, clientId);
-    const url = this.getDocumentThumbViewerServiceURL(documentId, page, limit, offset, query, documentViewerServiceURL);
+    const url = this.getDocumentThumbViewerServiceURL(clientId + ':' + documentId, page, limit, offset, query, documentViewerServiceURL);
     return this.httpGet(url, options);
   }
 
@@ -36,7 +36,7 @@ export class DocumentViewerService {
 
   public getDocumentViewerServiceForTotalPages(sToken: string, clientId: string, documentId: string, documentViewerServiceURL: string) {
     const options = this.getHttpHeaders(sToken, clientId);
-    const url = this.getDocumentViewerServiceURLForTotalPages(documentId, documentViewerServiceURL);
+    const url = this.getDocumentViewerServiceURLForTotalPages(clientId + ':' + documentId, documentViewerServiceURL);
     return this.httpGet(url, options);
   }
   public getDocumentViewerServiceURLForTotalPages(documentId: string, documentViewerServiceURL: string) {
@@ -51,8 +51,8 @@ export class DocumentViewerService {
 
     let headers = new HttpHeaders().set('Accept', 'application/json');
     if (sToken && clientId) {
-      headers = headers.set('stoken', sToken);
-      headers = headers.set('clientid', clientId);
+      headers = headers.set('authorization', `Bearer ` + sToken);
+      headers = headers.set('slb-account-id', clientId);
     }
     const options = { headers: headers };
     return options;

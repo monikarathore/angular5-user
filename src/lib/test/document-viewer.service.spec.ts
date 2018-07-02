@@ -29,7 +29,7 @@ describe('Document Viewer Service', () => {
       expect(service._http).toBeDefined();
     })));
 
-  it('should test document viewer service when query entered', async(inject(
+  fit('should test document viewer service when query entered', async(inject(
     [DocumentViewerService, HttpTestingController], (service, backend) => {
       service.getDocumentThumbViewerService('sToken', 'clientId', documentId, 'page', 1, 0, 'well',
         documentViewerServiceURL).subscribe(
@@ -43,7 +43,7 @@ describe('Document Viewer Service', () => {
       backend.match({ url: url, method: 'GET' })[0].flush({});
     })));
 
-  it('should get document viewer service URL when query is provided', async(inject(
+  fit('should get document viewer service URL when query is provided', async(inject(
     [DocumentViewerService, HttpTestingController], (service, backend) => {
       expect(service.getDocumentThumbViewerServiceURL(documentId, 'page', 1, 0, 'well', undefined))
         .toEqual(AppSettings.DOCUMENT_VIEWER_SERVICE_URL + '/' + documentId + '/page?limit=' + 1 + '&offset=' + 0 + '&query=' + 'well');

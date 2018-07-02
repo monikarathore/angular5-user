@@ -54,6 +54,7 @@
         "moment": "^2.22.2",
         "ng-packagr": "3.0.0",
         "ngx-infinite-scroll": "^0.8.3",
+        "ngx-order-pipe": "^2.0.1",
         "node-sass": "4.9.0",
         "omni-slider": "^1.2.1",
         "pikaday": "^1.7.0",
