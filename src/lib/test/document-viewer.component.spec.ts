@@ -108,16 +108,16 @@ describe('WkeDocumentViewComponent', () => {
 });
 
 class MockDocumentViewerService {
-  public getDocumentThumbViewerService(sToken: string, clientId: string, documentId: string,
+  public getDocumentThumbViewerService(sToken: string, slbAccountId: string, documentId: string,
     pageNumber: number, documentViewerServiceURL: string) {
     return Observable.of({
       'pageNumber': 1,
-      'documentId': 'oga:wellFileRecord',
+      'documentId': 'welldb:wellFileRecord',
       'thumbnailUrl': 'https://storage.googleapis.com/thumbnail.png',
       'imageUrl': 'https://storage.googleapis.com/image.png'
     });
   }
-  public getDocumentViewerServiceForTotalPages(sToken: string, clientId: string, documentId: string, documentViewerServiceURL: string) {
+  public getDocumentViewerServiceForTotalPages(sToken: string, slbAccountId: string, documentId: string, documentViewerServiceURL: string) {
     return Observable.of(
       {
         'totalCount': 53,
@@ -174,12 +174,12 @@ class MockDocumentViewerService {
 
 class MockDocumentViewerServiceError {
 
-  public getDocumentThumbViewerService(sToken: string, clientId: string, documentId: string,
+  public getDocumentThumbViewerService(sToken: string, slbAccountId: string, documentId: string,
     pageNumber: number, documentViewerServiceURL: string) {
     return new Observable(observer => observer.error('Bad Request - Document Id is mandatory for getDocumentTumb'));
   }
 
-  public getDocumentViewerServiceForTotalPages(sToken: string, clientId: string, documentId: string, documentViewerServiceURL: string) {
+  public getDocumentViewerServiceForTotalPages(sToken: string, slbAccountId: string, documentId: string, documentViewerServiceURL: string) {
     return new Observable(observer => observer.error('Bad Request - Document Id is mandatory for getDocumentViewerServiceForTotalPages'));
   }
 }

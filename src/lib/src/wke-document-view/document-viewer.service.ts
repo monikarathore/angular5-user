@@ -18,10 +18,11 @@ export class DocumentViewerService {
   }
 
 
-  public getDocumentThumbViewerService(sToken: string, clientId: string,
+  public getDocumentThumbViewerService(sToken: string, tenant: string,
     documentId: string, page: string, limit: number, offset, query, documentViewerServiceURL: string): Observable<any> {
-    const options = this.getHttpHeaders(sToken, clientId);
-    const url = this.getDocumentThumbViewerServiceURL(clientId + ':' + documentId, page, limit, offset, query, documentViewerServiceURL);
+    const options = this.getHttpHeaders(sToken, tenant);
+    const url = this.getDocumentThumbViewerServiceURL(tenant + ':' + documentId, page, limit, offset, query, documentViewerServiceURL);
+    console.log(url);
     return this.httpGet(url, options);
   }
 
@@ -34,9 +35,10 @@ export class DocumentViewerService {
     }
   }
 
-  public getDocumentViewerServiceForTotalPages(sToken: string, clientId: string, documentId: string, documentViewerServiceURL: string) {
-    const options = this.getHttpHeaders(sToken, clientId);
-    const url = this.getDocumentViewerServiceURLForTotalPages(clientId + ':' + documentId, documentViewerServiceURL);
+  public getDocumentViewerServiceForTotalPages(sToken: string, tenant: string, documentId: string, documentViewerServiceURL: string) {
+    const options = this.getHttpHeaders(sToken, tenant);
+    const url = this.getDocumentViewerServiceURLForTotalPages(tenant + ':' + documentId, documentViewerServiceURL);
+    console.log('total pages ', url);
     return this.httpGet(url, options);
   }
   public getDocumentViewerServiceURLForTotalPages(documentId: string, documentViewerServiceURL: string) {
@@ -44,15 +46,15 @@ export class DocumentViewerService {
     return this.documentViewerServiceURL + '/' + documentId;
   }
 
-  private getHttpHeaders(sToken: string, clientId: string): any {
+  private getHttpHeaders(sToken: string, tenant: string): any {
 
-    this.sharedService.setClientId(clientId);
+    this.sharedService.settenant(tenant);
     this.sharedService.setStoken(sToken);
 
     let headers = new HttpHeaders().set('Accept', 'application/json');
-    if (sToken && clientId) {
-      headers = headers.set('authorization', `Bearer ` + sToken);
-      headers = headers.set('slb-account-id', clientId);
+    if (sToken && tenant) {
+      headers = headers.set('authorization', sToken);
+      headers = headers.set('slb-account-id', tenant);
     }
     const options = { headers: headers };
     return options;

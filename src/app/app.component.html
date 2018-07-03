@@ -15,7 +15,7 @@
             </div>
             <div class="input-form">
                 <label> Client Id</label>
-                <input type="text" [(ngModel)]="clientId" placeholder="Enter client Id" />
+                <input type="text" [(ngModel)]="slbAccountId" placeholder="Enter client Id" />
             </div>
             <div class="clearfix input-form">
                 <label>
@@ -30,7 +30,7 @@
 </div>
 <div class="doc-viewer-holder">
     <div *ngIf="showDocViewer && documentId">
-        <wke-document-view [documentViewerServiceURL]='url' [sToken]='sToken' [documentId]='documentId' [clientId]='clientId' [query]='query' [closeIconVisibility]="closeIconVisibility" (close)="closeDocView()">
+        <wke-document-view [sToken]='sToken' [documentId]='documentId' [slbAccountId]='slbAccountId' [query]='query' [closeIconVisibility]="closeIconVisibility" (close)="closeDocView()">
         </wke-document-view>
     </div>
 </div>

@@ -20,8 +20,8 @@ describe('SharedService', () => {
 
     it('shoud get Stoken and client Id', inject([SharedService], (service: SharedService) => {
         service.setStoken('test');
-        service.setClientId('test');
-        expect(service.getClientId()).toBe('test');
+        service.settenant('test');
+        expect(service.gettenant()).toBe('test');
         expect(service.getStoken()).toBe('test');
 
     }));

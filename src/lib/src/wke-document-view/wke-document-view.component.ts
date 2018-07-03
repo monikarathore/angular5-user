@@ -31,7 +31,7 @@ export class WkeDocumentViewComponent implements OnInit, OnChanges {
   @Input() public query: string;
   @Input() public documentViewerServiceURL: string;
   @Input() public sToken: string;
-  @Input() public clientId: string;
+  @Input() public slbAccountId: string;
   @ViewChild('panel', { read: ElementRef }) public panel: ElementRef;
   constructor(public documentViewerService: DocumentViewerService, private renderer: Renderer2) { }
 
@@ -72,7 +72,7 @@ export class WkeDocumentViewComponent implements OnInit, OnChanges {
     }
   }
   public getDocumentData() {
-    this.documentViewerService.getDocumentViewerServiceForTotalPages(this.sToken, this.clientId, this.documentId,
+    this.documentViewerService.getDocumentViewerServiceForTotalPages(this.sToken, this.slbAccountId, this.documentId,
       this.documentViewerServiceURL).subscribe((document) => {
         this.errorMsg = false;
         this.wkeDocumentData = document;
@@ -84,7 +84,7 @@ export class WkeDocumentViewComponent implements OnInit, OnChanges {
       });
   }
   public getDocumentTumb(limitPage, pageoffset) {
-    this.documentViewerService.getDocumentThumbViewerService(this.sToken, this.clientId, this.documentId,
+    this.documentViewerService.getDocumentThumbViewerService(this.sToken, this.slbAccountId, this.documentId,
       Constants.PAGE, this.pagelimit, this.offset, this.query, this.documentViewerServiceURL).subscribe((thumbResponse) => {
         this.documentThumbnails = thumbResponse.records;
         this.totalCount = thumbResponse.totalCount;

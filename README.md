@@ -32,7 +32,7 @@ User permissions:- User should have permission to view the dataset. Example - To
 
 - `sToken` [Required] : sToken is needed for enrichment fetchservice which is used to fetch well details from WKE store. s-Auth service is used to obtain the valid sToken for given user.
 
-- `clientId` [Required] : clientId is needed for enrichment fetchservice which is used to fetch well details from WKE store. s-Auth service is used to obtain the valid sToken for given user.
+- `slbAccountId` [Required] : slbAccountId is needed for enrichment fetchservice which is used to fetch well details from WKE store. s-Auth service is used to obtain the valid sToken for given user.
 
 - `closeIconVisibility` [Optional] : Needs to be set to true/false depending on if you want to display close icon or not.
 
@@ -65,6 +65,6 @@ User permissions:- User should have permission to view the dataset. Example - To
 - Add html template selector in any html page. For example:
 
 ```html
- <wke-document-view [documentViewerServiceURL]='url' [sToken]='sToken' [documentId]='documentId' [clientId]='clientId' [query]='query' [closeIconVisibility]="closeIconVisibility" (close)="closeDocView()">
+ <wke-document-view [documentViewerServiceURL]='url' [sToken]='sToken' [documentId]='documentId' [slbAccountId]='tenant' [query]='query' [closeIconVisibility]="closeIconVisibility" (close)="closeDocView()">
  </wke-document-view>
 ```

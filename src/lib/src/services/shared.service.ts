@@ -5,17 +5,17 @@ import { Injectable } from '@angular/core';
 export class SharedService {
 
     private sToken: string;
-    private clientId: string;
+    private slbAccountId: string;
 
     public getStoken() {
         return this.sToken;
     }
-    public getClientId() {
-        return this.clientId;
+    public gettenant() {
+        return this.slbAccountId;
     }
 
-    public setClientId(_clientId: string) {
-        this.clientId = _clientId;
+    public settenant(slbAccountId: string) {
+        this.slbAccountId = slbAccountId;
     }
 
     public setStoken(_stoken: string) {
