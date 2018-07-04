@@ -30,7 +30,7 @@
 </div>
 <div class="doc-viewer-holder">
     <div *ngIf="showDocViewer && documentId">
-        <wke-document-view [sToken]='sToken' [documentId]='documentId' [slbAccountId]='slbAccountId' [query]='query' [closeIconVisibility]="closeIconVisibility" (close)="closeDocView()">
+        <wke-document-view [documentViewerServiceURL]='url' [sToken]='sToken' [documentId]='documentId' [slbAccountId]='slbAccountId' [query]='query' [closeIconVisibility]="closeIconVisibility" (close)="closeDocView()">
         </wke-document-view>
     </div>
 </div>

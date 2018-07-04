@@ -31,7 +31,7 @@ describe('Document Viewer Service', () => {
 
   it('should test document viewer service when query entered', async(inject(
     [DocumentViewerService, HttpTestingController], (service, backend) => {
-      service.getDocumentThumbViewerService('sToken', 'tenant' + 1, documentId, 'page', 1, 0, 'well',
+      service.getDocumentThumbViewerService('sToken', 'tenant', documentId, 'page', 1, 0, 'well',
         documentViewerServiceURL).subscribe(
           document => {
             expect(document).toBeDefined();
@@ -39,7 +39,7 @@ describe('Document Viewer Service', () => {
             expect(error).toBeDefined();
           }
       );
-      const url = documentViewerServiceURL + '/' + 'tenant1:' + documentId + '/page?limit=' + 1 + '&offset=' + 0 + '&query=' + 'well';
+      const url = documentViewerServiceURL + '/' + documentId + '/page?limit=' + 1 + '&offset=' + 0 + '&query=' + 'well';
       backend.match({ url: url, method: 'GET' })[0].flush({});
     })));
 
@@ -59,32 +59,32 @@ describe('Document Viewer Service', () => {
 
   it('should test document viewer getDocumentViewerServiceURLForTotalPages', async(inject(
     [DocumentViewerService, HttpTestingController], (service, backend) => {
-      service.getDocumentViewerServiceForTotalPages('sToken', 'tenant' + 1, documentId, documentViewerServiceURL).subscribe(
+      service.getDocumentViewerServiceForTotalPages('sToken', 'tenant', documentId, documentViewerServiceURL).subscribe(
         document => {
           expect(document).toBeDefined();
         }, (error) => {
           expect(error).toBeDefined();
         }
       );
-      const url1 = documentViewerServiceURL + '/' + 'tenant1:' + documentId;
+      const url1 = documentViewerServiceURL + '/' + documentId;
       backend.match({ url: url1, method: 'GET' })[0].flush({});
     })));
   it('should handle error getDocumentViewerServiceForTotalPages ', async(inject(
     [DocumentViewerService, HttpTestingController], (service, backend) => {
-      service.getDocumentViewerServiceForTotalPages('sToken', 'tenant' + 1, documentId, documentViewerServiceURL).subscribe(
+      service.getDocumentViewerServiceForTotalPages('sToken', 'tenant', documentId, documentViewerServiceURL).subscribe(
         documents => {
         },
         err => { expect(err).toBe('no permission') },
       );
-      const url = documentViewerServiceURL + '/' + 'tenant1:' + documentId;
+      const url = documentViewerServiceURL + '/' + documentId;
       backend.match({ url: url, method: 'GET' })[0].flush({}, { status: 401, statusText: 'No auth token' });
-      service.getDocumentViewerServiceForTotalPages('sToken', 'tenant' + 1, documentId, documentViewerServiceURL).subscribe(
+      service.getDocumentViewerServiceForTotalPages('sToken', 'tenant', documentId, documentViewerServiceURL).subscribe(
         documents => {
         },
         err => { expect(err).toBe('no permission') },
       );
       backend.match({ url: url, method: 'GET' })[0].flush({}, { status: 403, statusText: 'No auth token' });
-      service.getDocumentViewerServiceForTotalPages('sToken', 'tenant' + 1, documentId, documentViewerServiceURL).subscribe(
+      service.getDocumentViewerServiceForTotalPages('sToken', 'tenant', documentId, documentViewerServiceURL).subscribe(
         documents => {
         },
         err => { expect(err).toBe('Server Error') },
