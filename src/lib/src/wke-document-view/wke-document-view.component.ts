@@ -62,7 +62,7 @@ export class WkeDocumentViewComponent implements OnInit, OnChanges {
   }
 
   // public onScrollUp(): void {
-  //   this.getNews(
+  //   this.getDocumentTumb(
   //     this.pagelimit,
   //     (documentThumbnails) => {
   //       this.documentThumbnails = this.documentThumbnails.concat(documentThumbnails);
@@ -84,7 +84,7 @@ export class WkeDocumentViewComponent implements OnInit, OnChanges {
     //  this.pagelimit += 6;
      // this.pagelimit += 6;
         this.offset += 6;
-        this.getNews(
+        this.getDocumentTumb(
           this.pagelimit,
           this.offset,
           (documentThumbnails) => {
@@ -103,7 +103,7 @@ export class WkeDocumentViewComponent implements OnInit, OnChanges {
       if (changes.hasOwnProperty(propName)) {
         if (propName === 'documentId') {
           this.getDocumentData();
-          this.getNews(this.pagelimit, this.offset, (documentThumbnails) =>{ 
+          this.getDocumentTumb(this.pagelimit, this.offset, (documentThumbnails) =>{ 
             this.documentThumbnails = documentThumbnails;
           });
         }
@@ -136,7 +136,7 @@ export class WkeDocumentViewComponent implements OnInit, OnChanges {
       });
   }
   */
-  private getNews(limit, offst, saveResultsCallback: (documentThumbnails) => void) {
+  private getDocumentTumb(limit, offst, saveResultsCallback: (documentThumbnails) => void) {
     debugger;
     return this.documentViewerService.getDocumentThumbViewerService(this.sToken, this.slbAccountId, this.documentId,
       Constants.PAGE, this.pagelimit = limit, this.offset, this.query, this.documentViewerServiceURL)
@@ -144,6 +144,8 @@ export class WkeDocumentViewComponent implements OnInit, OnChanges {
       .do(() => { this.httpReqestInProgress = true; })
       .subscribe((documentThumbnails: any[]) => {
         //this.pagelimit++;
+        let totalCount;
+        let records;
         this.totalCount = documentThumbnails.totalCount;
         saveResultsCallback(documentThumbnails.records);
 
