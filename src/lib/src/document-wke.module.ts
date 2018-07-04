@@ -5,7 +5,6 @@ import { FileSizePipe } from './pipe/file-size.pipe';
 import { LoadingSpinnerModule } from '@slb-angular/dls-components';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { OrderModule } from 'ngx-order-pipe';
-
 @NgModule({
   imports: [
     CommonModule,
