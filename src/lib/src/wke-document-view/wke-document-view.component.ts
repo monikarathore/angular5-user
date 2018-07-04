@@ -82,7 +82,7 @@ export class WkeDocumentViewComponent implements OnInit, OnChanges {
     this.isLoadingThumb = true;
     if (this.pagelimit <= this.totalCount) {
     //  this.pagelimit += 6;
-      this.pagelimit += 6;
+     // this.pagelimit += 6;
         this.offset += 6;
         this.getNews(
           this.pagelimit,
