@@ -127,11 +127,11 @@
             <div class="doc-info-heading clearfix spacing-left-right">
                 <h5>Search result pages</h5>
             </div>
-            <!-- {{ documentThumbnails | json }}  | orderBy: order : false : true-->
+
             <div id="thumbnail-result-page" class="clearfix result-page" infinite-scroll [infiniteScrollDistance]="1" [infiniteScrollThrottle]="1" [scrollWindow]="false" (scrolled)="scrollDown()">
                 <div class="clearfix result-thumbnail" #panel>
                     <ul>
-                        <li *ngFor="let thumb of documentThumbnails" (click)="singleClickDocument(thumb)" [ngClass]="thumb.isSelected? 'selected': ''">
+                        <li *ngFor="let thumb of documentThumbnails | orderBy: order : false : true" (click)="singleClickDocument(thumb)" [ngClass]="thumb.isSelected? 'selected': ''">
                             <div class="thumbholder">
                                 <img src="{{thumb.thumbnailUrl}}" alt="" title="">
                             </div>
